@@ -2,7 +2,16 @@ package de.pinpoint.client.LocationClient;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import okhttp3.*;
+import de.pinpoint.client.LocationClient.request.Request;
+import de.pinpoint.client.LocationClient.request.UserInfoPostRequest;
+import de.pinpoint.client.LocationClient.request.UserListRequest;
+import de.pinpoint.client.LocationClient.request.UuidRequest;
+import de.pinpoint.client.LocationClient.response.Response;
+import de.pinpoint.client.LocationClient.response.UserListResponse;
+import de.pinpoint.client.LocationClient.response.UuidResponse;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,32 +33,38 @@ class RestClient implements LocationClient {
 
     @Override
     public void postInfo(UserInfo info) throws IOException {
-        String json = gson.toJson(info);
-        RequestBody body = RequestBody.create(json, JSON);
-        Request request = new Request.Builder()
-                .url(baseUrl + "/update")
-                .post(body)
-                .build();
-
-        client.newCall(request).execute();
+        UserInfoPostRequest userInfoPostRequest = new UserInfoPostRequest(info);
+        Response response = this.makeRequest(userInfoPostRequest, Response.class);
     }
 
     @Override
-    public Collection<UserInfo> getInfoList() throws IOException {
-        Request request = new Request.Builder()
-                .url(baseUrl + "/list")
-                .build();
-        Response response = client.newCall(request).execute();
+    public Collection<UserInfo> getInfoList(UUID uuid) throws IOException {
+        UserListRequest userListRequest = new UserListRequest(uuid);
+        UserListResponse userListResponse = this.makeRequest(userListRequest, UserListResponse.class);
 
-        return gson.fromJson(response.body().string(), new TypeToken<ArrayList<UserInfo>>(){}.getType());
+        return userListResponse.getUsers();
     }
 
     @Override
     public UUID getNewUuid() throws IOException {
-        Request request = new Request.Builder()
-                .url(baseUrl + "/generate")
+        UuidRequest uuidRequest = new UuidRequest(UUID.randomUUID());
+        UuidResponse uuidResponse = this.makeRequest(uuidRequest, UuidResponse.class);
+
+        if (uuidResponse.getStatus() != 0) {
+            throw new IOException(uuidResponse.getMessage());
+        }
+        return uuidResponse.getUuid();
+    }
+
+    private <T extends Response> T makeRequest(Request request, Class<T> responseType) throws IOException {
+        String requestJson = gson.toJson(request);
+        RequestBody body = RequestBody.create(requestJson, JSON);
+        okhttp3.Request httpRequest = new okhttp3.Request.Builder()
+                .url(baseUrl + request.getPath())
+                .post(body)
                 .build();
-        Response response = client.newCall(request).execute();
-        return UUID.fromString(response.body().string());
+        okhttp3.Response httpResponse = client.newCall(httpRequest).execute();
+        String responseJson = httpResponse.body().string();
+        return gson.fromJson(responseJson, responseType);
     }
 }
