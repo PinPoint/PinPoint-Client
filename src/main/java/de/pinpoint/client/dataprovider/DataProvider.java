@@ -2,6 +2,7 @@ package de.pinpoint.client.dataprovider;
 
 import de.pinpoint.client.locationclient.LocationClient;
 import de.pinpoint.client.locationclient.UserInfo;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
@@ -15,6 +16,11 @@ public class DataProvider {
     private UUID userId;
     private EventHandler eventHandler = new EventHandler();
     private Collection<UserInfo> userCache;
+
+    public DataProvider(LocationClient client, UUID uuid){
+        this.client = client;
+        this.initialize(uuid);
+    }
 
     public void initialize(UUID uuid){
         this.userId = uuid;
