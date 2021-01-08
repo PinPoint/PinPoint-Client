@@ -1,4 +1,4 @@
-package de.pinpoint.client.LocationClient;
+package de.pinpoint.client.locationclient;
 
 public class RestClientFactory {
     public LocationClient produceRestClient(String baseUrl) {

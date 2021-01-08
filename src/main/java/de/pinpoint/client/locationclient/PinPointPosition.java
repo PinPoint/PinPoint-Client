@@ -1,4 +1,4 @@
-package de.pinpoint.client.LocationClient;
+package de.pinpoint.client.locationclient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,6 @@
-package de.pinpoint.client.LocationClient.response;
+package de.pinpoint.client.locationclient.response;
 
-import de.pinpoint.client.LocationClient.UserInfo;
+import de.pinpoint.client.locationclient.UserInfo;
 import lombok.Getter;
 
 import java.util.List;

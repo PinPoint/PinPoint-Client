@@ -1,11 +1,7 @@
-package de.pinpoint.client.LocationClient.request;
+package de.pinpoint.client.locationclient.request;
 
-import de.pinpoint.client.LocationClient.UserInfo;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import de.pinpoint.client.locationclient.UserInfo;
 import lombok.Getter;
-
-import java.util.UUID;
 
 @Getter
 public class UserInfoPostRequest extends Request {

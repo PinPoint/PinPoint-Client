@@ -1,20 +1,18 @@
-package de.pinpoint.client.LocationClient;
+package de.pinpoint.client.locationclient;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import de.pinpoint.client.LocationClient.request.Request;
-import de.pinpoint.client.LocationClient.request.UserInfoPostRequest;
-import de.pinpoint.client.LocationClient.request.UserListRequest;
-import de.pinpoint.client.LocationClient.request.UuidRequest;
-import de.pinpoint.client.LocationClient.response.Response;
-import de.pinpoint.client.LocationClient.response.UserListResponse;
-import de.pinpoint.client.LocationClient.response.UuidResponse;
+import de.pinpoint.client.locationclient.request.Request;
+import de.pinpoint.client.locationclient.request.UserInfoPostRequest;
+import de.pinpoint.client.locationclient.request.UserListRequest;
+import de.pinpoint.client.locationclient.request.UuidRequest;
+import de.pinpoint.client.locationclient.response.Response;
+import de.pinpoint.client.locationclient.response.UserListResponse;
+import de.pinpoint.client.locationclient.response.UuidResponse;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 

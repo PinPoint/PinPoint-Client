@@ -1,12 +1,11 @@
 package de.pinpoint.client;
 
-import de.pinpoint.client.LocationClient.LocationClient;
-import de.pinpoint.client.LocationClient.PinPointPosition;
-import de.pinpoint.client.LocationClient.RestClientFactory;
-import de.pinpoint.client.LocationClient.UserInfo;
+import de.pinpoint.client.locationclient.LocationClient;
+import de.pinpoint.client.locationclient.PinPointPosition;
+import de.pinpoint.client.locationclient.RestClientFactory;
+import de.pinpoint.client.locationclient.UserInfo;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.UUID;
 
