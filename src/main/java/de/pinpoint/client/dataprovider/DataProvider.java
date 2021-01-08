@@ -22,8 +22,8 @@ public class DataProvider {
         this.eventHandler.handleUpdate(this.userCache);
     }
 
-    public void setUpdateListener(UpdateListener listener){
-        this.eventHandler.setListener(listener);
+    public void addUpdateListener(UpdateListener listener){
+        this.eventHandler.registerListener(listener);
     }
 
     public Collection<UserInfo> getUsers() {
