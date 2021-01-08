@@ -12,11 +12,18 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class DataProvider {
     private final LocationClient client;
-    private final UUID userId;
+    private UUID userId;
     private EventHandler eventHandler = new EventHandler();
     private Collection<UserInfo> userCache;
 
-    public void invokeUpdate() throws IOException {
+    public void initialize(UUID uuid){
+        this.userId = uuid;
+    }
+
+    public void invokeUpdate() throws IOException, IllegalStateException {
+        if(userId == null){
+            throw new IllegalStateException("DataProvider not initialized");
+        }
         Collection<UserInfo> newList = this.client.getInfoList(userId);
         this.userCache = Collections.unmodifiableCollection(newList);
         this.eventHandler.handleUpdate(this.userCache);
