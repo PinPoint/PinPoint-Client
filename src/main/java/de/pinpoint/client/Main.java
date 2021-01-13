@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.UUID;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         System.out.println("Hello world!");
         RestClientFactory restClientFactory = new RestClientFactory();
         LocationClient client = restClientFactory.produceRestClient("https://thedst.de/pinpoint/api/v1/");

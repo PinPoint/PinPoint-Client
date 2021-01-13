@@ -13,7 +13,10 @@ public abstract class Request {
      */
     private UUID userId;
 
-    public Request(){};
+    public Request() {
+    }
+
+    ;
 
     public abstract String getPath();
 }

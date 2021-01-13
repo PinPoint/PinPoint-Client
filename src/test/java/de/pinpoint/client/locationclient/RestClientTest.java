@@ -7,7 +7,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RestClientTest {
 
@@ -50,7 +51,7 @@ class RestClientTest {
         assertNotEquals(uuid1, uuid2);
     }
 
-    private UserInfo randomUserInfo(){
+    private UserInfo randomUserInfo() {
         return new UserInfo(UUID.randomUUID(), "Alex", "#FFFFFF", PinPointPosition.NULL_ISLAND);
     }
 }

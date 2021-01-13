@@ -9,7 +9,9 @@ public class UserListRequest extends Request {
     public UserListRequest(UUID userId) {
         super(userId);
     }
-    public UserListRequest(){}
+
+    public UserListRequest() {
+    }
 
     @Override
     public String getPath() {

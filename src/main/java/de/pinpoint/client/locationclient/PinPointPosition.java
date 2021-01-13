@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class PinPointPosition {
-    public static PinPointPosition NULL_ISLAND = new PinPointPosition(0.0,0.0);
+    public static PinPointPosition NULL_ISLAND = new PinPointPosition(0.0, 0.0);
     private double longitude, latitude;
 
     /**
@@ -15,7 +15,7 @@ public class PinPointPosition {
      *
      * @return distance in meters
      */
-    public float distance(PinPointPosition other) {
+    public double distance(PinPointPosition other) {
         double earthRadius = 6371000; //meters
         double dLat = Math.toRadians(other.getLatitude() - this.latitude);
         double dLng = Math.toRadians(other.longitude - this.longitude);
@@ -23,7 +23,7 @@ public class PinPointPosition {
                 Math.cos(Math.toRadians(this.latitude)) * Math.cos(Math.toRadians(other.longitude)) *
                         Math.sin(dLng / 2) * Math.sin(dLng / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        float dist = (float) (earthRadius * c);
+        double dist = earthRadius * c;
         return dist;
     }
 }

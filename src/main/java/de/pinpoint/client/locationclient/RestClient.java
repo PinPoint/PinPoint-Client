@@ -19,10 +19,9 @@ import java.util.UUID;
 class RestClient implements LocationClient {
     private static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
-
-    private String baseUrl;
     private final Gson gson = new Gson();
     private final OkHttpClient client = new OkHttpClient();
+    private String baseUrl;
 
 
     public RestClient(String baseUrl) {

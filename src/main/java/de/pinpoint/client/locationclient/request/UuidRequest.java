@@ -12,7 +12,8 @@ public class UuidRequest extends Request {
         super(uuid);
     }
 
-    public UuidRequest(){}
+    public UuidRequest() {
+    }
 
     @Override
     public String getPath() {

@@ -1,7 +1,6 @@
 package de.pinpoint.client.dataprovider;
 
 import de.pinpoint.client.locationclient.UserInfo;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Collection;
