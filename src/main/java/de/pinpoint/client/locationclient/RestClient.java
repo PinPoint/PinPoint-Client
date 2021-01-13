@@ -1,6 +1,7 @@
 package de.pinpoint.client.locationclient;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 import de.pinpoint.client.locationclient.request.Request;
 import de.pinpoint.client.locationclient.request.UserInfoPostRequest;
 import de.pinpoint.client.locationclient.request.UserListRequest;
@@ -62,6 +63,10 @@ class RestClient implements LocationClient {
                 .build();
         okhttp3.Response httpResponse = client.newCall(httpRequest).execute();
         String responseJson = httpResponse.body().string();
-        return gson.fromJson(responseJson, responseType);
+        try {
+            return gson.fromJson(responseJson, responseType);
+        } catch (JsonParseException ex) {
+            throw new IOException("invalid server response", ex);
+        }
     }
 }
