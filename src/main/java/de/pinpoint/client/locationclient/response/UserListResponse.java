@@ -13,7 +13,7 @@ public class UserListResponse extends Response {
      * Constructs a failed UuidResponse.
      *
      * @param statusCode http error code
-     * @param message fail reason
+     * @param message    fail reason
      */
     public UserListResponse(int statusCode, String message) {
         super(statusCode, message);
@@ -24,7 +24,7 @@ public class UserListResponse extends Response {
      *
      * @param users
      */
-    public UserListResponse(List<UserInfo> users){
+    public UserListResponse(List<UserInfo> users) {
         super();
         this.users = users;
     }

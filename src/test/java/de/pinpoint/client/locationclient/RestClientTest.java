@@ -15,36 +15,37 @@ class RestClientTest {
     static UserInfo EXAMPLE_USER = new UserInfo(TestConstants.STEVE_UUID, "Steve", "#FFFFFF", PinPointPosition.NULL_ISLAND);
 
     @Test
-    void postInfo() throws IOException {
+    void testPostInfo() throws IOException {
         RestClient client = (RestClient) new RestClientFactory().produceRestClient(TestConstants.TEST_BACKEND);
         UserInfo info = EXAMPLE_USER;
         client.postInfo(info);
     }
 
     @Test
-    void getInfoList() throws IOException {
+    void testGetInfoList() throws IOException {
         RestClient client = (RestClient) new RestClientFactory().produceRestClient(TestConstants.TEST_BACKEND);
         client.getInfoList(UUID.randomUUID());
     }
 
     @Test
-    void getNewUuid() throws IOException {
+    void testGetNewUuid() throws IOException {
         RestClient client = (RestClient) new RestClientFactory().produceRestClient(TestConstants.TEST_BACKEND);
         client.getNewUuid();
     }
 
     @Test
-    void checkPostedInfo() throws IOException {
+    void testCheckPostedInfo() throws IOException {
         RestClient client = (RestClient) new RestClientFactory().produceRestClient(TestConstants.TEST_BACKEND);
         UserInfo info = EXAMPLE_USER;
         client.postInfo(info);
 
-        Collection<UserInfo> userList = client.getInfoList(info.getUuid());
+        Collection<UserInfo> userList = client.getInfoList(UUID.randomUUID());
+        assertTrue(userList.size() > 0);
         assertTrue(userList.contains(info));
     }
 
     @Test
-    void getNewUuidEquals() throws IOException {
+    void testGetNewUuidEquals() throws IOException {
         RestClient client = (RestClient) new RestClientFactory().produceRestClient(TestConstants.TEST_BACKEND);
         UUID uuid1 = client.getNewUuid();
         UUID uuid2 = client.getNewUuid();
